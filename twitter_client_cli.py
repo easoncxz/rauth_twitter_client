@@ -25,7 +25,11 @@ def main():
     print(ats)
     print()
     sess = twitter.get_session((at, ats))
+    resp = sess.get('account/verify_credentials.json')
+    j = resp.json()
+    screen_name = j['screen_name']
+    print("Hello, {}!".format(screen_name))
     return sess
 
 if __name__ == '__main__':
-    rt, rts, at, ats = main)
+    sess = main()
