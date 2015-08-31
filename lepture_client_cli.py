@@ -6,25 +6,12 @@ import code
 from lepture_rauth import make_lepture
 
 def main():
-    print('Paste in Lepture consumer key & secret.')
-    lines = []
-    while True:
-        l = input().strip()
-        if l:
-            lines.append(l)
-        else:
-            break
-    j_str = '\n'.join(lines)
-    j = json.loads(j_str)
-    ck, cs = j['consumer_key'], j['consumer_secret']
+    ck = '38zgEsThKKD26hRcpJr3353Fd3rEQW'
+    cs = '87b6cbQrT2PPTiwI4M72NDQDVV0s6vJzFeXHNz7c'
     lepture = make_lepture(ck, cs)
-    # Now has Lepture app
-    #rt, rts = lepture.get_request_token(
-    #        data=dict(
-    #            oauth_callback='http://localhost:5000/callback'))
-    t = lepture.get_raw_request_token()
-    code.interact(local=vars())
-
+    rt, rts = lepture.get_request_token(
+            data=dict(
+                oauth_callback='http://localhost:8000/callback'))
     print("Using request token and secret:")
     print(rt)
     print(rts)
@@ -44,4 +31,4 @@ def main():
     return sess
 
 if __name__ == '__main__':
-    main()
+    sess = main()
